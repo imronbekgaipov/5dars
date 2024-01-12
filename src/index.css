@@ -2,43 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-display: swap;
-  font-family: "League Spartan";
-  font-style: normal;
-  font-weight: 500;
-  src: url("./fonts/league-spartan-v11-latin-500.woff2") format("woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "League Spartan";
-  font-style: normal;
-  font-weight: 600;
-  src: url("./fonts/league-spartan-v11-latin-600.woff2") format("woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "League Spartan";
-  font-style: normal;
-  font-weight: 700;
-  src: url("./fonts/league-spartan-v11-latin-700.woff2") format("woff2");
-}
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;800;900&display=swap");
 
-@layer base {
-  html {
-    @apply text-xs;
+@apply components {
+  body {
+    @apply;
+    font-family: "Spartan", sans-serif;
   }
-  h2 {
-    @apply text-xl leading-[22px];
-  }
-  h3 {
-    @apply text-base;
-  }
-}
-
-@layer components {
   .max-container {
     max-width: 730px;
-    @apply px-5 mx-auto w-full;
+    @layer mx-auto w-full;
   }
+  .custom-shadow {
+    box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
+  }
+}
+
+html {
+  height: 100vh;
+}
+
+.paid_oval {
+  display: inline-block;
+  min-width: 0.5rem;
+  min-height: 0.5rem;
+  border-radius: 50%;
 }

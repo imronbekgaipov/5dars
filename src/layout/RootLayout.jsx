@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-function MainLayout() {
+function RootLayout() {
   return (
-    <div className="lg:flex h-screen">
+    <div className="lg:flex">
       <Navbar />
-      <main className="bg-pearl-white max-container md:tab-container">
+      <main className="max-container">
         <Outlet />
       </main>
+      {/* Foter */}
     </div>
   );
 }
 
-export default MainLayout;
+export default RootLayout;

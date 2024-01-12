@@ -1,40 +1,42 @@
+import React from "react";
+
 function Navbar() {
   return (
-    <header className="pl-[22px] bg-carbon-blue bg-logo-bg pr-6  text-white bg-left lg:bg-top bg-[length:72px_72px] lg:bg-[length:103px_103px] bg-no-repeat flex items-center justify-between lg:flex-col lg:px-0 lg:pt-[33.5px] lg:pb-6 lg:rounded-tr-[20px] lg:rounded-br-[20px]">
-      <img src="./assets/logo.svg" alt="" height={26} width={28} />
-      <div className="flex lg:flex-col">
-        <div className="border-r-[1px] lg:border-r-0 lg:border-b-[1px] border-[#494E6E] py-6 lg:p-0 flex lg:justify-center items-center pr-6 lg:pb-7">
+    <div className="lg:fixed lg:h-[740px]  pl-[22px] pr-6 bg-CARBON-BLUE bg-logo-bg bg-no-repeat  bg-left bg-[length:72px_72px] flex justify-between items-center lg:flex-col lg:bg-top lg:bg-[length:103px_103px] lg:px-0 lg:pt-[33.5px] lg:pb-6 lg:rounded-tr-[20px] lg:rounded-br-[20px]">
+      <img src="./assets/logo.svg" alt="logo" width={28} height={26} />
+      <div className="flex lg:flex-col lg:justify-center ">
+        <div className="border-r-2 lg:border-r-0 lg:border-b-2 border-[#494E6E] flex items-center lg:p-0  py-6 pr-6 lg:justify-center lg:pb-8">
           <label className="swap swap-rotate">
+            {/* this hidden checkbox controls the state */}
             <input type="checkbox" />
-            {/* sun icon */}
+
             <img
-              className="swap-off fill-current"
-              src="./assets/icon-sun.svg"
-              alt="sun icon"
-              height={20}
-              width={20}
-            />
-            {/* moon icon */}
-            <img
-              className="swap-on fill-current"
+              className="swap-on fill-current  "
               src="./assets/icon-moon.svg"
-              alt="moon icon"
-              height={20}
-              width={20}
+              alt="icon moon svg"
+              width={25}
+              height={25}
+            />
+            <img
+              className="swap-off fill-current "
+              src="./assets/icon-sun.svg"
+              alt="icon sun svg"
+              width={25}
+              height={25}
             />
           </label>
         </div>
-        <div className="py-6 pl-6 lg:py-6 lg:px-8">
+        <div className="py-5 pl-6 lg:py-6 lg:pr-9">
           <img
             className="rounded-full"
             src="./assets/image-avatar.jpg"
+            alt="avatar image"
             width={32}
             height={32}
-            alt="avatar image"
           />
         </div>
       </div>
-    </header>
+    </div>
   );
 }
 

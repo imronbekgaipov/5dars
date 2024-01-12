@@ -1,68 +1,101 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-function InvoiseList({ invoices }) {
+function InvoiceList({ invoices }) {
   return (
     <div>
-      <ul className="flex items-center flex-col justify-center gap-4 pt-4 pb-[105px]">
-        {invoices.map((invoise) => {
-          const { id, clientName } = invoise;
-          return (
-            <li
-              key={id}
-              className="rounded-lg p-6 md:px-6 bg-[#fff] shadow-[0_10px_10px_-10px_rgba(72, 84, 159, 0.10)] w-[327px] md:w-[672px] h-[134px] md:h-[72px] shrink-0 md:"
-            >
-              <Link
-                className="md:flex items-center justify-between"
-                to={`invoice/${id}`}
+      <ul className="px-6 mt-8 md:mt-0 mb-[105px] md:px-0">
+        {invoices &&
+          invoices.map((invoice) => {
+            const { id, status } = invoice;
+            console.log(invoice);
+            return (
+              <li
+                key={id}
+                className="p-6 rounded-lg bg-white custom-shadow mb-4 last:mb-0"
               >
-                <div className="flex gap-[140px] items-center md:gap-8">
-                  <h1 className="text-khmer-curry text-base font-bold leading-4">
-                    <span className="text-true-lavender">#</span>
-                    {id}
-                  </h1>
-                  <h3 className="hidden md:inline-block mb-2 md:mb-0 text-true-lavender">
-                    Due 19 Aug 2021
-                  </h3>
-                  <h2 className="text-frozen-state text-base font-medium">
-                    {clientName}
+                <div className="flex justify-between  mb-6">
+                  <h2 className="text-RUINED-SMORES text-xs font-bold">
+                    <span className="text-TRUE-LAVENDER text-xs font-bold">
+                      #
+                    </span>
+                    RT3080
                   </h2>
+                  <h3 className="text-xs font-medium text-TRUE-LAVENDER">
+                    Jensen Huang
+                  </h3>
                 </div>
-                <div className="flex gap-[100px] items-center pt-6 md:pt-0 md:gap-10 ">
-                  <div>
-                    <h3 className="mb-2 text-true-lavender md:hidden">
+                <div class="flex items-center justify-between">
+                  <div class="">
+                    <p class="mb-2 text-xs font-medium text-TRUE-LAVENDER">
                       Due 19 Aug 2021
-                    </h3>
-                    <h3 className="text-khmer-curry font-bold text-xl">
-                      €{invoise.total}
-                    </h3>
+                    </p>
+                    <p class="text-RUINED-SMORES text-base font-bold">
+                      $1,800.90
+                    </p>
                   </div>
-                  <div>
-                    <button className="flex items-center gap-2 rounded-md py-3 px-8 bg-everlasting-ice md:flex">
-                      <img
-                        src="./assets/paid-touch.svg"
-                        width={8}
-                        height={8}
-                        alt=""
+                  <div class="flex items-center">
+                    <div class="">
+                      <button
+                        className={` rounded-md bg-opacity-5   ${
+                          status === "paid"
+                            ? "bg-[#33D69F]"
+                            : status === "pending"
+                            ? "bg-[#FF8F00]"
+                            : status === "draft"
+                            ? "bg-[#373B53]"
+                            : ""
+                        } `}
+                      >
+                        <div className="flex justify-center items-center w-[104px] py-3 px-[29px] gap-2">
+                          <span
+                            className={`paid_oval ${
+                              status === "paid"
+                                ? "bg-[#33d69f]"
+                                : status === "pending"
+                                ? "bg-[#FF8F00]"
+                                : status === "draft"
+                                ? "bg-[#373B53]"
+                                : ""
+                            }`}
+                          ></span>
+                          <span
+                            className={`text-xs font-semibold ${
+                              status === "paid"
+                                ? "text-[#33d69f]"
+                                : status === "pending"
+                                ? "text-[#FF8F00]"
+                                : status === "draft"
+                                ? "text-[#373B53]"
+                                : ""
+                            }`}
+                          >
+                            {status.charAt(0).toUpperCase() + status.slice(1)}
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                    <svg
+                      className="hidden md:block"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="7"
+                      height="10"
+                      viewBox="0 0 7 10"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1L5 5L1 9"
+                        stroke="#7C5DFA"
+                        stroke-width="2"
                       />
-                      <span className="text-base text-dark-shamrock font-bold">
-                        {invoise.status}
-                      </span>
-                    </button>
+                    </svg>
                   </div>
                 </div>
-                <img
-                  className="hidden md:inline-block"
-                  src="./assets/icon-arrow-right.svg"
-                  alt="right arrow icon"
-                />
-              </Link>
-            </li>
-          );
-        })}
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
 }
 
-export default InvoiseList;
+export default InvoiceList;

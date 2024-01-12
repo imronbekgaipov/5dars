@@ -1,7 +1,7 @@
-import { useReducer } from "react";
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useReducer } from "react";
 
-function changeState(state, action) {
+const changeState = (state, action) => {
   switch (action.type) {
     case "SET_DATA":
       return { ...state, data: action.payload };
@@ -9,34 +9,30 @@ function changeState(state, action) {
       return { ...state, isPending: action.payload };
     case "SET_ERROR":
       return { ...state, error: action.payload };
-    default:
-      return state;
   }
-}
+};
 
 export function useFetch(url) {
   const [state, dispatch] = useReducer(changeState, {
     data: null,
-    error: null,
     isPending: false,
+    error: null,
   });
 
   useEffect(() => {
     const getData = async () => {
       dispatch({ type: "SET_ISPENDING", payload: true });
       try {
-        const req = await fetch(url);
-
-        if (!req.ok) {
-          throw new Error("Something went wrong");
+        const req = await axios(url);
+        if (req.status !== 200) {
+          throw new Error(req.message);
         }
-        const data = await req.json();
-        dispatch({ type: "SET_DATA", payload: data });
+        dispatch({ type: "SET_DATA", payload: req.data });
         dispatch({ type: "SET_ISPENDING", payload: false });
         dispatch({ type: "SET_ERROR", payload: null });
       } catch (error) {
+        dispatch({ type: "SET_ERROR", payload: error });
         dispatch({ type: "SET_ISPENDING", payload: false });
-        dispatch({ type: "SET_ERROR", payload: error.message });
       }
     };
     getData();

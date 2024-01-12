@@ -1,20 +1,15 @@
 import React from "react";
 import { useFetch } from "../hooks/useFetch";
-import InvoiseList from "../components/InvoiceList";
-import InvoiceTop from "../components/InvoiceTop";
+
+import InvoiceList from "../components/InvoiceList";
+import Header from "../components/Header";
 
 function Home() {
-  const {
-    data: invoices,
-    isPending,
-    error,
-  } = useFetch("http://localhost:3000/Invoise");
-
+  const { isPending, error, data } = useFetch("http://localhost:3000/data");
   return (
-    <div>
-      {isPending && <h1>Loading...</h1>}
-      <InvoiceTop />
-      {invoices && <InvoiseList invoices={invoices} />}
+    <div className="w-full mx-auto">
+      <Header />
+      <InvoiceList invoices={data} />
     </div>
   );
 }
